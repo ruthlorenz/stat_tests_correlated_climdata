@@ -1,0 +1,40 @@
+\name{multVarTestAutocorr-package}
+\alias{multVarTestAutocorr-package}
+\alias{multVarTestAutocorr}
+\docType{package}
+\title{
+Multivariate tests for autocorrelated data
+}
+\description{
+Significance tests for autocorrelated data (modified t-test and moving blocks bootstrapping) and two field significance tests to be used with modified t-test (Walkers test and False discovery rate). The moving blocks bootstrapping includes a test for field significance.
+}
+\details{
+\tabular{ll}{
+Package: \tab multVarTestAutocorr\cr
+Type: \tab Package\cr
+Version: \tab 1.0\cr
+Date: \tab 2015-07-10\cr
+License: \tab GPL-2\cr
+}
+This package contains four main functions, modTtest3d, mbbTest, walkerTest and fdrTest. All functions are designed for spatial data (longitude x latitude). modTtest3d and mbbTest need multiple timesteps while walkerTest and fdrTest can have multiple time steps but do not need to.
+}
+\author{
+Ruth Lorenz
+Maintainer: Ruth Lorenz \email{ruthl.lorenz22@gmail.com}
+
+}
+\references{
+Zwiers and von Storch, 1995, Taking serial correlation into account in tests of the mean, J. Clim, 8, p. 336-351.
+Wilks, D.S., 1997, Resampling Hypothesis Tests for Autocorrelated Fields, J. Clim., 10, p.65--82.
+Wilks, D.S., 2006, On "Field Significance" and the False Discovery Rate, J. Appl. Meteorol. Climatol., 45, p. 1181-1189.
+}
+~~ Optionally other standard keywords, one per line, from file KEYWORDS in ~~
+~~ the R documentation directory ~~
+\keyword{ package }
+\seealso{
+~~ Optional links to other man pages, e.g. ~~
+~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+}
+\examples{
+~~ simple examples of the most important functions ~~
+}

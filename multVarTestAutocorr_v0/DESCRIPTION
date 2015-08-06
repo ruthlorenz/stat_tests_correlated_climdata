@@ -1,0 +1,10 @@
+Package: multVarTestAutocorr
+Type: Package
+Title: Multivariate tests for autocorrelated data
+Version: 1.0
+Date: 2015-07-10
+Author: Ruth Lorenz
+Maintainer: <ruth.lorenz22@gmail.com>
+Description: Significance tests for autocorrelated data (modified t-test and moving blocks bootstrapping) and two field significance tests to be used with modified t-test (Walkers test and False discovery rate)
+Imports: abind (>=1.4-0)
+License: GPL-2
