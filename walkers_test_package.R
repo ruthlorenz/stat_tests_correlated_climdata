@@ -6,9 +6,9 @@
 walkerTest <- function(p_val, siglev=0.05, ...){
 
         dims_p <- dim(p_val)
-        nlon<-dims_p[1]
+	nlon<-dims_p[1]
         nlat<-dims_p[2]
-	if (!is.null(dims_p[3])){
+	if (!is.na(dims_p[3])){
            ntim<-dims_p[3]
 	} else {
 	  ntim<-1
@@ -16,7 +16,7 @@ walkerTest <- function(p_val, siglev=0.05, ...){
 	  p_val<-array(NA,dim=c(nlon,nlat,ntim))
 	  p_val[,,1]<-tmp
 	}
-
+	print(ntim)
 	h_val<-array(NA,dim=c(nlon,nlat,ntim))
 
 	
