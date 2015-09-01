@@ -126,7 +126,7 @@ function(x, y = NULL, alternative = c("two.sided", "less", "greater"),
 		   stderr <- (sqrt(sp2)*(sqrt(1/nx+1/ny)))
 		   tstat <- (my-mx)/stderr		#Eq.16
 		   r1 <- calc_lag1Corr(x,y,mx,my)
-		   tcrit <- lookupTcrit(r1,1-conf.level,nx+ny)
+		   tcrit <- lookupTcrit(r1,1-conf.level,nx+ny,y)
 		   method <- paste("Two Sample modified lookup table t-test for spatial data") 
 	    }
 	    if(all(stderr < 10 *.Machine$double.eps * max(abs(mx), abs(my))))

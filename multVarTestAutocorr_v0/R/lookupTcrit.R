@@ -1,5 +1,5 @@
 lookupTcrit <-
-function(r1,siglev,nobs){
+function(r1,siglev,nobs,y=NULL){
 
 source(paste("/home/z3441306/scripts/plot_scripts/R_scripts/tests_for_autocorr_fields/create_LookupTabs_modTtest.R",sep="/"))
 
@@ -13,17 +13,31 @@ alpha[,2]<-b
 alpha[,3]<-c
 
 stat_val<-lookupTabs(nobs)
-
-if (isTRUE(all.equal(siglev, 0.20))){
-  tab<-stat_val[,1]
-} else if (isTRUE(all.equal(siglev, 0.10))){
-  tab<-stat_val[,2]
-} else if (isTRUE(all.equal(siglev, 0.05))){
-  tab<-stat_val[,3]
-} else if (isTRUE(all.equal(siglev, 0.02))){
-  tab<-stat_val[,4]
-} else if (isTRUE(all.equal(siglev, 0.01))){
-  tab<-stat_val[,5]
+if (is.null(y)) {
+    if (isTRUE(all.equal(siglev,0.10))){
+      tab<-stat_val[,1]
+    } else if (isTRUE(all.equal(siglev,0.05))){
+      tab<-stat_val[,2]
+    } else if (isTRUE(all.equal(siglev, 0.025))){
+      tab<-stat_val[,3]
+    } else if (isTRUE(all.equal(siglev, 0.01))){
+      tab<-stat_val[,4]
+    } else if (isTRUE(all.equal(siglev, 0.005))){
+      tab<-stat_val[,5]
+    } else stop("significance level not found in lookup table, exiting")
+    }
+} else {
+    if (isTRUE(all.equal(siglev, 0.20))){
+      tab<-stat_val[,1]
+    } else if (isTRUE(all.equal(siglev, 0.10))){
+      tab<-stat_val[,2]
+    } else if (isTRUE(all.equal(siglev, 0.05))){
+      tab<-stat_val[,3]
+    } else if (isTRUE(all.equal(siglev, 0.02))){
+      tab<-stat_val[,4]
+    } else if (isTRUE(all.equal(siglev, 0.01))){
+      tab<-stat_val[,5]
+    }
 }
 
 dims<-dim(r1)
