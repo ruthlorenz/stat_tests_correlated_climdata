@@ -27,9 +27,6 @@ calcR1 <- function(x){
        	  ntim <- length(x)
 	  xAve <- mean(x,na.rm=TRUE)
 	  xsumsq=sum((x[1:ntim]-xAve)^2,na.rm=TRUE)
-	  #for (yr in 1:ntim){
-          #    xsumsq<-xsumsq+((x[yr]-xAve)^2)
-          #}
 	  xsumlag=0
           for (yr in 1:(ntim-1)){
               xsumlag<-xsumlag+((x[yr]-xAve)*(x[yr+1]-xAve))
@@ -37,16 +34,13 @@ calcR1 <- function(x){
        	  R1 <- xsumlag/xsumsq
 	  return(R1)
 }
-ACF_x=apply(x,c(1:2),function(z) acf(z,lag.max=1,type="correlation",plot=FALSE,na.action = na.pass))
-r1_x=apply(ACF_x,c(1,2),function(v) v[[1]]$acf[2])
-#r1_x=apply(x,c(1:2),calcR1)
+r1_x=apply(x,c(1:2),calcR1)
 
 k <-1:(ntim-1)
 V_x=array(NA,dim=c(nlon,nlat))
 for (lat in 1:nlat){
         for (lon in 1:nlon){
 	    V_x[lon,lat]=1+2*sum((1-k/ntim)*r1_x[lon,lat]^k,na.rm=T)
-	    #if (lat==1 & lon==1) print(r1_x[lon,lat]^k)
 	}#end lon
 } #end lat
 
@@ -67,9 +61,7 @@ for (lat in 1:nlat){
 L_x<-mean(l_x_2d,na.rm=T)
 
 if( !is.null(y) ) {
-    ACF_y=apply(y,c(1:2),function(w) acf(w,lag.max=1,type="correlation",plot=FALSE,na.action = na.pass))
-    r1_y=apply(ACF_y,c(1,2),function(u) u[[1]]$acf[2])
-    #r1_y=apply(y,c(1:2),calcR1)
+    r1_y=apply(y,c(1:2),calcR1)
 
     V_y=array(NA,dim=c(nlon,nlat))
     for (lat in 1:nlat){

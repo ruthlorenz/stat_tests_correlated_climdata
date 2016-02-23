@@ -26,10 +26,6 @@ calcR1 <- function(x){
        	  ntim <- length(x)
 	  xAve <- mean(x,na.rm=TRUE)
 	  xsumsq=sum((x[1:ntim]-xAve)^2,na.rm=TRUE)
-	  #xsumsq=0
-	  #for (yr in 1:ntim){
-          #    xsumsq<-xsumsq+((x[yr]-xAve)^2)
-          #}
 	  xsumlag=0
           for (yr in 1:(ntim-1)){
               xsumlag<-xsumlag+((x[yr]-xAve)*(x[yr+1]-xAve))
@@ -43,13 +39,7 @@ calcR2 <- function(x){
 	  xAve_m <- mean(x[1:(ntim-2)],na.rm=TRUE)
 	  xAve_p <- mean(x[3:ntim],na.rm=TRUE)
 	  xsumsq1=sum((x[1:(ntim-2)]-xAve_m)^2,na.rm=TRUE)
-	  #for (yr in 1:(ntim-2)){
-          #    xsumsq1<-xsumsq1+(x[yr]-xAve_m)^2
-          #}
 	  xsumsq2=sum((x[3:ntim]-xAve_p)^2,na.rm=TRUE)
-	  #for (yr in 3:ntim){
-          #    xsumsq2<-xsumsq2+(x[yr]-xAve_p)^2
-          #}
 	  xsumlag=0
           for (yr in 1:(ntim-2)){
 	      xsumlag<-xsumlag+((x[yr]-xAve_m)*(x[yr+2]-xAve_p))
@@ -58,10 +48,6 @@ calcR2 <- function(x){
 	  return(R2)
 }
 rk_x=array(NA,dim=c(nlon,nlat,ntim))
-ACF_x <- apply(x,c(1:2),function(z) acf(z,lag.max=2,type="correlation",plot=FALSE,na.action = na.pass))
-#rk_x[,,1] <- apply(ACF_x,c(1,2),function(v) v[[1]]$acf[2])
-#rk_x[,,2]<- apply(ACF_x,c(1,2),function(v) v[[1]]$acf[3])
-#print(ACF_x[[1]]$acf)
 
 rk_x[,,1]<- apply(x,c(1:2),calcR1)
 rk_x[,,2]<- apply(x,c(1:2),calcR2)
@@ -78,7 +64,6 @@ for (lat in 1:nlat){
 	    	rk_x[lon,lat,ka]=ph1_x[lon,lat]*rk_x[lon,lat,ka-1]+ph2_x[lon,lat]*rk_x[lon,lat,ka-2]
 	    }
 	    V_x[lon,lat]=1+2*sum((1-k/ntim)*rk_x[lon,lat,k],na.rm=T)
-	    #if (lat==1 & lon==1) print(rk_x[lon,lat,k])
 	}#end lon
 } #end lat
 
@@ -91,11 +76,7 @@ for (lat in 1:nlat){
         for (lon in 1:nlon){
 	    l_x <-1
 	    length_x<-l_x
-	    #if (is.na(b_x[lon,lat])){
-	    #   l_x_2d[lon,lat]=NA
-	    #} else {
 	    l_x_2d[lon,lat]=findL(l_x,length_x,b_x[lon,lat],ntim)
-	    #}
 	}#end lon
 } #end lat
 
@@ -103,11 +84,8 @@ L_x<-mean(l_x_2d,na.rm=TRUE)
 
 if( !is.null(y) ) {
     rk_y=array(NA,dim=c(nlon,nlat,ntim))
-    ACF_y <- apply(y,c(1:2),function(z) acf(z,lag.max=2,type="correlation",plot=FALSE,na.action = na.pass))
-    rk_y[,,1] <- apply(ACF_y,c(1,2),function(v) v[[1]]$acf[2])
-    rk_y[,,2]<- apply(ACF_y,c(1,2),function(v) v[[1]]$acf[3])
-    #rk_y[,,1]=apply(y,c(1:2),calcR1)
-    #rk_y[,,2]=apply(y,c(1:2),calcR2)
+    rk_y[,,1]=apply(y,c(1:2),calcR1)
+    rk_y[,,2]=apply(y,c(1:2),calcR2)
     ph1_y=rk_y[,,1]*(1-rk_y[,,2])/(1-rk_y[,,1]^2)
     ph2_y=(rk_y[,,2]-rk_y[,,1]^2)/(1-rk_y[,,1]^2)
 
