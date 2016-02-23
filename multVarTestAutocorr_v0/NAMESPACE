@@ -1,7 +1,0 @@
-export(modTtest3d)
-export(mbbTest)
-export(walkerTest)
-export(fdrTest)
-S3method(modTtest3d, default)
-S3method(modTtest3d, formula)
-S3method(mbbTest, default)
