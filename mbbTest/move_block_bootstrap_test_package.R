@@ -8,9 +8,9 @@ mbbTest.default <- function(x, y = NULL, mu = 0, model = "AR1",
 		L = NULL, siglev=0.05, alpha=0.05, nb=1000, verbose = FALSE,
 		timevals=NULL, na.rm = TRUE, ...){
 
-source("/home/z3441306/scripts/plot_scripts/R_scripts/tests_for_autocorr_fields/estimate_block_length.R")
-source("/home/z3441306/scripts/plot_scripts/R_scripts/tests_for_autocorr_fields/estimate_block_length2.R")
-source("/home/z3441306/scripts/plot_scripts/R_scripts/tests_for_autocorr_fields/move_blocks_bootstrap_wilks.R")
+source("/home/z3441306/scripts/stat_tests_correlated_climdata/mbbTest/estimate_block_length.R")
+source("/home/z3441306/scripts/stat_tests_correlated_climdata/mbbTest/estimate_block_length2.R")
+source("/home/z3441306/scripts/stat_tests_correlated_climdata/mbbTest/move_blocks_bootstrap_wilks.R")
 
 #------ Find and check dimensions ------#
 dimsX <- dim(x)
