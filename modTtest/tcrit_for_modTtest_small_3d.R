@@ -3,7 +3,7 @@
 
 lookupTcrit <- function(r1,siglev,nobs,y=NULL){
 
-source(paste("/home/z3441306/scripts/plot_scripts/R_scripts/tests_for_autocorr_fields/create_LookupTabs_modTtest.R",sep="/"))
+source(paste("/home/z3441306/scripts/stat_tests_correlated_climdata/modTtest/create_LookupTabs_modTtest.R",sep="/"))
 
 a<-seq(-0.35,0.95,length=27)
 b<-a-0.025

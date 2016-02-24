@@ -18,10 +18,10 @@ function(x, y = NULL, alternative = c("two.sided", "less", "greater"),
          time.vals = NULL, ...)
 {
         library(abind)
-        source("/home/z3441306/scripts/plot_scripts/R_scripts/tests_for_autocorr_fields/calc_lag1Corr_3d.R")
-        source("/home/z3441306/scripts/plot_scripts/R_scripts/tests_for_autocorr_fields/calc_EqvSamplSize_large_3d.R")
-        source("/home/z3441306/scripts/plot_scripts/R_scripts/tests_for_autocorr_fields/tcrit_for_modTtest_small_3d.R")
-        source("/home/z3441306/scripts/plot_scripts/R_scripts/tests_for_autocorr_fields/calc_poolSampVar_3d.R")
+        source("/home/z3441306/scripts/stat_tests_correlated_climdata/modTtest/calc_lag1Corr_3d.R")
+        source("/home/z3441306/scripts/stat_tests_correlated_climdata/modTtest/calc_EqvSamplSize_large_3d.R")
+        source("/home/z3441306/scripts/stat_tests_correlated_climdata/modTtest/tcrit_for_modTtest_small_3d.R")
+        source("/home/z3441306/scripts/stat_tests_correlated_climdata/modTtest/calc_poolSampVar_3d.R")
 
 	alternative <- match.arg(alternative)
 

@@ -3,7 +3,7 @@
 # Zwiers and von Storch, 1995, J. Clim, Eq. 16
 
 calc_Tstat_small <- function(x,y,xAve,yAve){
-source(paste("/home/z3441306/scripts/plot_scripts/R_scripts/tests_for_autocorr_fields/calc_poolSampVar_3d.R",sep="/"))
+source(paste("/home/z3441306/scripts/stat_tests_correlated_climdata/modTtest/calc_poolSampVar_3d.R",sep="/"))
 
 dimsX <- dim(x)
 xnyrs<-dimsX[3]
